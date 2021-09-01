@@ -37,7 +37,7 @@ canvas {
 }
 
 a {
-  color: #cfe3f3;
+  color: #deeaf3;
   -webkit-transition: 0.5s;
   -o-transition: 0.5s;
   transition: 0.5s; }
@@ -53,7 +53,7 @@ p {
 }
 x{
     margin-bottom: 1.5em;
-    background-color:darkkhaki;
+    background-color:#2c98f0;
     color: black;
     backface-visibility: visible;
 }
@@ -116,7 +116,7 @@ figure {
   width: 300px;
   position: fixed;
   z-index: 1001;
-    background-color: #f9bf3f;
+    background-color: #2c98f0;
   -webkit-transition: 0.5s;
   -o-transition: 0.5s;
   transition: 0.5s; }
@@ -129,7 +129,7 @@ figure {
       -o-transform: translateX(-300px);
       transform: translateX(-300px);
       padding-top: 4em;
-	  background-color: #f9bf3f;
+	  background-color: #2c98f0;
         height: auto;
       } }
   #colorlib-aside .author-img {
