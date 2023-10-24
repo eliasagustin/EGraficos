@@ -48,27 +48,52 @@ img {
     }
     reload();
     
+        intervalo = 0;
+
     setInterval(function(){
         // Espera 5 segundos antes de cargar el video
         setTimeout(function() {
-            // Crea un elemento iframe para embeber el video de YouTube
-            var iframe = document.createElement('iframe');
-            iframe.allowFullscreen = true;
-            iframe.allow= 'autoplay';
-            iframe.src = 'https://www.youtube.com/embed/z6jogYOyXEo?autoplay=1&mute=1&controls=0';
-            iframe.style.position = 'absolute';
-            iframe.style.top = '0';
-            iframe.style.left = '0';
-            iframe.style.width = '100%';
-            iframe.style.height = '100%';
-            iframe.style.border = 'none';
+            if (intervalo == 0){
+                // Crea un elemento iframe para embeber el video de YouTube
+                var iframe = document.createElement('iframe');
+                iframe.allowFullscreen = true;
+                iframe.allow= 'autoplay';
+                iframe.src = 'https://www.youtube.com/embed/z6jogYOyXEo?autoplay=1&mute=1&controls=0';
+                iframe.style.position = 'absolute';
+                iframe.style.top = '0';
+                iframe.style.left = '0';
+                iframe.style.width = '100%';
+                iframe.style.height = '100%';
+                iframe.style.border = 'none';
 
-            // Agrega el iframe al cuerpo del documento
-            document.body.appendChild(iframe);
-            // Espera 10 segundos antes de cerrar el video
-            setTimeout(function() {
-                document.body.removeChild(iframe);
-            }, 12500); // 10 segundos (10000 milisegundos)
+                // Agrega el iframe al cuerpo del documento
+                document.body.appendChild(iframe);
+                // Espera 10 segundos antes de cerrar el video
+                setTimeout(function() {
+                    document.body.removeChild(iframe);
+                    intervalo = 1;
+                }, 13500); // 10 segundos (10000 milisegundos)
+            }
+            if (intervalo == 1){
+                // Crea un elemento iframe para embeber el video de YouTube
+                var iframe = document.createElement('iframe');
+                iframe.allowFullscreen = true;
+                iframe.src = 'https://eliasagustin.github.io/EGraficos/placa_tv_1920x1080_CN.jpg';
+                iframe.style.position = 'absolute';
+                iframe.style.top = '0';
+                iframe.style.left = '0';
+                iframe.style.width = '100%';
+                iframe.style.height = '100%';
+                iframe.style.border = 'none';
+
+                // Agrega el iframe al cuerpo del documento
+                document.body.appendChild(iframe);
+                // Espera 10 segundos antes de cerrar el video
+                setTimeout(function() {
+                    document.body.removeChild(iframe);
+                    intervalo = 0;
+                }, 10500); // 10 segundos (10000 milisegundos)
+            }
         }, 5000); // 5 segundos (5000 milisegundos)
     }, 45000);
 
