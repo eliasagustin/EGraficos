@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+    body{
+        /* overflow: hidden; */
+    }
+    .contenedor {
+    display: flex;
+    align-items: center;
+}
+ iframe {
+    
+    width: 66%;
+    height: 98vh;
+}
+
+img {
+    width: 33%; /* Ancho de la imagen (1/3 de la pantalla) */
+    max-width: 100%; /* La imagen se ajustará al ancho del contenedor */
+    height: 97vh;
+    padding: 5px;
+}
+.overflow {
+    overflow: hidden;
+}
+    </style>
+</head>
+<body>
+    <div class="contenedor">
+        <iframe id="myIfr" src="http://grupotr.com.ar/" frameborder="0"></iframe>
+        <img id="imagenLateral" alt="Imagen lateral">
+        <video id="video1" alt="carga de video1"></video>
+    </div>
+
+  <script>  
+    var imagen1 = document.createElement('img');
+        imagen1.className = 'overflow';
+        imagen1.src = 'TR-4K.jpg';
+        imagen1.style.position = 'absolute';
+        imagen1.style.top = '0';
+        imagen1.style.left = '0';
+        imagen1.style.width = '100%';
+        imagen1.style.height = '100%';
+        imagen1.style.border = 'none';
+        imagen1.style.visibility = "hidden";
+    document.body.appendChild(imagen1);
+    imagen1.style.visibility = "hidden";
+    
+    var imagenLateral = document.getElementById("imagenLateral");
+    
+    var video1 = document.getElementById("video1");
+        video1.className = 'overflow';
+        video1.src = "video/dengue.mp4";
+        video1.style.position = 'absolute';
+        video1.style.top = '0';
+        video1.style.left = '0';
+        video1.style.width = '100%';
+        video1.style.height = '100%';
+        video1.style.border = 'none';
+        video1.style.visibility = "hidden";
+
+    var loaded = false;
+    video1.addEventListener('loadeddata', function() {
+        console.log('Video loaded.');
+        loaded = true;
+    });
+    // Append the video element to the document or a specific element
+    document.body.appendChild(video1);
+    function reload() {
+        document.getElementById('myIfr').src = 'http://grupotr.com.ar/';
+        imagenLateral.src = "https://raw.githubusercontent.com/eliasagustin/InforTerminal/master/imgLateral/img_01.jpg";
+    }
+    reload();
+    var selectedAction = 0;
+    setInterval(function(){
+        if(loaded== true){ //Solo empieza cuando carga recurso de video
+            switch (selectedAction) {
+            case 0: // 0 segundos iinicia ejecucion de video
+                imagen1.style.visibility = "hidden";
+                video1.style.visibility = "visible";
+                video1.play();
+                myIfr.style.visibility = "hidden";
+                imagenLateral.style.visibility = "hidden";
+                console.log("visible");
+                break;
+            case 11: // 11 * 10seg = 110 segundos q es la duracion del video, por lo que desabilita el video y muestra imagen a partir de los 111 segundos
+                myIfr.style.visibility = "visible";
+                imagenLateral.style.visibility = "visible";
+                video1.style.visibility = "hidden";
+                video1.pause();
+                video1.currentTime = 0;
+                imagen1.style.visibility = "hidden";
+                console.log("hidden");
+                break;
+            }
+            if (selectedAction > 15){ //Resetea cuenta de temporal, donde la unidad son 10 segundos
+                selectedAction = 0;
+            }else{
+                selectedAction ++;
+            }
+        }
+    }, 10000); // Suma equivalente a 10 segundos
+
+    //Resetea la web para recargar todo
+    setTimeout(function(){
+        location.reload();
+    }, 20*30000);
+</script>
+</body>
+</html>
